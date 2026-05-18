@@ -1,0 +1,77 @@
+<%- include('../partials/header') %>
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="page-hero-overlay"></div>
+  <div class="container text-center page-hero-content">
+    <h1 class="page-hero-title">Our <span class="text-gradient">Trainers</span></h1>
+    <p class="page-hero-sub">Expert coaches committed to your transformation</p>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb justify-content-center">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active">Trainers</li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<!-- Trainers Grid -->
+<section class="py-5">
+  <div class="container py-4">
+    <div class="text-center mb-5">
+      <div class="section-tag">Meet the Team</div>
+      <h2 class="section-title">World-Class Certified Trainers</h2>
+      <p class="section-text">Our trainers bring years of experience, passion, and personalized attention to every session.</p>
+    </div>
+
+    <div class="row g-4">
+      <% trainers.forEach(function(trainer) { %>
+      <div class="col-lg-4 col-md-6">
+        <div class="trainer-card-full">
+          <div class="trainer-img-wrap">
+            <img src="<%= trainer.image %>" alt="<%= trainer.name %>" class="trainer-img" />
+            <div class="trainer-overlay">
+              <div class="trainer-socials">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="trainer-info-full">
+            <h4 class="trainer-name"><%= trainer.name %></h4>
+            <span class="trainer-spec"><%= trainer.specialization %></span>
+            <span class="trainer-exp"><i class="fas fa-medal me-1"></i><%= trainer.experience %> Experience</span>
+            <p class="trainer-bio"><%= trainer.bio %></p>
+            <div class="trainer-rating">
+              <% for(let i = 0; i < Math.floor(trainer.rating); i++) { %>
+                <i class="fas fa-star"></i>
+              <% } %>
+              <% if(trainer.rating % 1 >= 0.5) { %>
+                <i class="fas fa-star-half-alt"></i>
+              <% } %>
+              <span><%= trainer.rating %> / 5.0</span>
+            </div>
+            <a href="/auth/signup" class="btn btn-primary-custom btn-sm mt-3 w-100">
+              <i class="fas fa-calendar-check me-2"></i>Book a Session
+            </a>
+          </div>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section py-5">
+  <div class="container text-center py-4">
+    <h2 class="cta-title">Ready to Train with the Best?</h2>
+    <p class="cta-sub">Sign up today and get matched with your ideal trainer.</p>
+    <a href="/auth/signup" class="btn btn-primary-custom btn-lg" id="trainers-join-btn">
+      <i class="fas fa-dumbbell me-2"></i>Start Your Journey
+    </a>
+  </div>
+</section>
+
+<%- include('../partials/layout_end') %>

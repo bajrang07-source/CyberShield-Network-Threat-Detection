@@ -1,0 +1,11 @@
+{
+  "name": "cybershield-agent",
+  "version": "1.0.0",
+  "description": "CyberShield Universal — Node.js/Express middleware SDK",
+  "main": "index.js",
+  "keywords": ["cybershield", "security", "waf", "middleware"],
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0"
+  }
+}

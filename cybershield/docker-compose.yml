@@ -1,0 +1,84 @@
+version: "3.9"
+
+services:
+  # ── Redis ─────────────────────────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    container_name: cybershield-redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - cybershield-net
+
+  # ── Backend (CyberShield Universal) ───────────────────────────────────────
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: cybershield-backend
+    ports:
+      - "5000:5000"     # Dashboard API + WebSocket
+    env_file:
+      - .env
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - DATABASE_URL=sqlite:///cybershield.db
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - model_data:/app/ml
+      - db_data:/app
+    networks:
+      - cybershield-net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+
+  # ── Frontend (React Dashboard) ────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: cybershield-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - cybershield-net
+    restart: unless-stopped
+
+  # ── Reverse Proxy (optional — expose on port 8080) ────────────────────────
+  # Uncomment to run CyberShield in reverse proxy mode.
+  # Any traffic to :8080 is analyzed and forwarded to X-Origin-Host.
+  #
+  # proxy:
+  #   image: nginx:alpine
+  #   container_name: cybershield-proxy
+  #   ports:
+  #     - "8080:80"
+  #   volumes:
+  #     - ./proxy/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+  #   depends_on:
+  #     - backend
+  #   networks:
+  #     - cybershield-net
+
+volumes:
+  model_data:
+  db_data:
+
+networks:
+  cybershield-net:
+    driver: bridge

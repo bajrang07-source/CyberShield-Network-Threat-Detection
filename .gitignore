@@ -1,0 +1,48 @@
+# Environments
+.env
+.env.*
+.venv
+venv/
+ENV/
+env.bak/
+venv.bak/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Node
+node_modules/
+npm-debug.log
+
+# Datasets and Models
+*.csv
+*.pkl
+*.h5
+*.joblib
+*.pt
+data/
+datasets/
+models/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.swp
+
+# IDEs
+.vscode/
+.idea/
+
+# Coverage and testing
+.pytest_cache/
+coverage/
+
+# Databases
+*.sqlite3
+instance/

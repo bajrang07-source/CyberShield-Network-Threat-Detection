@@ -1,0 +1,181 @@
+<%- include('../partials/header') %>
+
+<section class="dashboard-section">
+  <div class="container py-4">
+
+    <!-- Dashboard Header -->
+    <div class="dashboard-header mb-4">
+      <div>
+        <h1 class="dashboard-title">
+          Welcome back, <span class="text-gradient"><%= user.name.split(' ')[0] %></span> 💪
+        </h1>
+        <p class="dashboard-subtitle">Track your workouts and stay on top of your fitness goals</p>
+      </div>
+      <a href="/auth/logout" class="btn btn-outline-danger" id="dashboard-logout-btn">
+        <i class="fas fa-sign-out-alt me-2"></i>Logout
+      </a>
+    </div>
+
+    <!-- Alerts -->
+    <% if (success) { %>
+      <div class="alert-custom alert-success-custom mb-4" id="dashboard-success">
+        <i class="fas fa-check-circle me-2"></i><%= success %>
+      </div>
+    <% } %>
+    <% if (error) { %>
+      <div class="alert-custom alert-error-custom mb-4" id="dashboard-error">
+        <i class="fas fa-exclamation-circle me-2"></i><%= error %>
+      </div>
+    <% } %>
+
+    <div class="row g-4">
+
+      <!-- Profile Card -->
+      <div class="col-lg-4">
+        <div class="profile-card">
+          <div class="profile-avatar">
+            <%= user.name.charAt(0).toUpperCase() %>
+          </div>
+          <h3 class="profile-name"><%= user.name %></h3>
+          <p class="profile-email"><%= user.email %></p>
+          <div class="profile-badge">
+            <% if(user.membership === 'Premium') { %>
+              <i class="fas fa-crown"></i>
+            <% } else if(user.membership === 'Pro') { %>
+              <i class="fas fa-fire"></i>
+            <% } else { %>
+              <i class="fas fa-bolt"></i>
+            <% } %>
+            <%= user.membership %> Member
+          </div>
+
+          <div class="profile-stats">
+            <div class="profile-stat">
+              <span class="ps-number"><%= workouts.length %></span>
+              <span class="ps-label">Workouts</span>
+            </div>
+            <div class="profile-stat-div"></div>
+            <div class="profile-stat">
+              <span class="ps-number">
+                <%= workouts.reduce((a,w)=>{ const d=parseInt(w.duration);return a+(isNaN(d)?0:d);},0) %>
+              </span>
+              <span class="ps-label">Total Mins</span>
+            </div>
+            <div class="profile-stat-div"></div>
+            <div class="profile-stat">
+              <span class="ps-number">
+                <%= workouts.reduce((a,w)=>a+(w.sets||0),0) %>
+              </span>
+              <span class="ps-label">Total Sets</span>
+            </div>
+          </div>
+
+          <a href="/membership" class="btn btn-outline-primary-custom btn-sm w-100 mt-3">
+            <i class="fas fa-arrow-up me-1"></i>Upgrade Plan
+          </a>
+        </div>
+      </div>
+
+      <!-- Workout Section -->
+      <div class="col-lg-8">
+
+        <!-- Add Workout Card -->
+        <div class="workout-add-card mb-4">
+          <h4 class="workout-add-title"><i class="fas fa-plus-circle me-2"></i>Add New Workout</h4>
+          <form action="/dashboard/workout/add" method="POST" id="add-workout-form">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="workout-name" class="form-label-custom">Workout Name *</label>
+                <div class="input-group-custom">
+                  <i class="fas fa-dumbbell"></i>
+                  <input type="text" id="workout-name" name="name" class="form-input-custom"
+                    placeholder="e.g. Pushups, Leg Day..." required maxlength="100" />
+                </div>
+              </div>
+              <div class="col-md-2">
+                <label for="workout-sets" class="form-label-custom">Sets</label>
+                <div class="input-group-custom">
+                  <i class="fas fa-layer-group"></i>
+                  <input type="number" id="workout-sets" name="sets" class="form-input-custom"
+                    placeholder="4" min="1" max="20" value="3" />
+                </div>
+              </div>
+              <div class="col-md-2">
+                <label for="workout-reps" class="form-label-custom">Reps</label>
+                <div class="input-group-custom">
+                  <i class="fas fa-redo"></i>
+                  <input type="number" id="workout-reps" name="reps" class="form-input-custom"
+                    placeholder="12" min="1" max="200" value="12" />
+                </div>
+              </div>
+              <div class="col-md-2">
+                <label for="workout-duration" class="form-label-custom">Duration</label>
+                <div class="input-group-custom">
+                  <i class="fas fa-clock"></i>
+                  <input type="text" id="workout-duration" name="duration" class="form-input-custom"
+                    placeholder="30 min" maxlength="20" value="30 min" />
+                </div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary-custom" id="add-workout-btn">
+                  <i class="fas fa-plus me-2"></i>Add Workout
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Workout List -->
+        <div class="workout-list-card">
+          <div class="workout-list-header">
+            <h4 class="workout-list-title"><i class="fas fa-list me-2"></i>My Workouts</h4>
+            <span class="workout-count-badge"><%= workouts.length %> Total</span>
+          </div>
+
+          <% if (workouts.length === 0) { %>
+            <div class="empty-workouts">
+              <i class="fas fa-dumbbell"></i>
+              <p>No workouts yet! Add your first workout above.</p>
+            </div>
+          <% } else { %>
+            <div class="workout-items">
+              <% workouts.slice().reverse().forEach(function(workout, idx) { %>
+              <div class="workout-item" id="workout-item-<%= idx %>">
+                <div class="workout-icon">
+                  <% if(workout.name.toLowerCase().includes('cardio') || workout.name.toLowerCase().includes('run')) { %>
+                    <i class="fas fa-running"></i>
+                  <% } else if(workout.name.toLowerCase().includes('yoga') || workout.name.toLowerCase().includes('stretch')) { %>
+                    <i class="fas fa-spa"></i>
+                  <% } else if(workout.name.toLowerCase().includes('leg')) { %>
+                    <i class="fas fa-shoe-prints"></i>
+                  <% } else { %>
+                    <i class="fas fa-dumbbell"></i>
+                  <% } %>
+                </div>
+                <div class="workout-details">
+                  <span class="workout-name"><%= workout.name %></span>
+                  <div class="workout-meta">
+                    <span><i class="fas fa-layer-group me-1"></i><%= workout.sets %> sets</span>
+                    <span><i class="fas fa-redo me-1"></i><%= workout.reps %> reps</span>
+                    <span><i class="fas fa-clock me-1"></i><%= workout.duration %></span>
+                    <span><i class="fas fa-calendar me-1"></i><%= new Date(workout.date).toLocaleDateString('en-IN', {day:'2-digit',month:'short',year:'numeric'}) %></span>
+                  </div>
+                </div>
+                <form action="/dashboard/workout/delete/<%= workout.id %>" method="POST" class="delete-form"
+                  onsubmit="return confirm('Delete this workout?')">
+                  <button type="submit" class="btn-delete-workout" title="Delete Workout" id="delete-workout-<%= workout.id %>">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </form>
+              </div>
+              <% }); %>
+            </div>
+          <% } %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/layout_end') %>

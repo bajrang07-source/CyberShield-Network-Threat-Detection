@@ -1,0 +1,363 @@
+<%- include('../partials/header') %>
+
+<!-- Hero Section -->
+<section class="hero-section" id="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content container text-center">
+    <div class="hero-badge animate-fade-up">
+      <i class="fas fa-fire me-2"></i>
+      <span>#1 Gym in the City</span>
+    </div>
+    <h1 class="hero-title animate-fade-up delay-1">
+      Transform Your Body.<br />
+      <span class="text-gradient">Transform Your Life.</span>
+    </h1>
+    <p class="hero-subtitle animate-fade-up delay-2">
+      Join FitZone Gym and unlock your true potential with world-class equipment,<br class="d-none d-md-block" />
+      expert trainers, and a community that inspires greatness.
+    </p>
+    <div class="hero-buttons animate-fade-up delay-3">
+      <a href="/auth/signup" class="btn btn-primary-custom btn-lg me-3" id="hero-join-btn">
+        <i class="fas fa-dumbbell me-2"></i>Join Now
+      </a>
+      <a href="/membership" class="btn btn-outline-light-custom btn-lg" id="hero-learn-btn">
+        <i class="fas fa-info-circle me-2"></i>Learn More
+      </a>
+    </div>
+    <div class="hero-stats animate-fade-up delay-4">
+      <div class="hero-stat">
+        <span class="stat-number" data-target="5000">0</span><span>+</span>
+        <span class="stat-label">Members</span>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <span class="stat-number" data-target="50">0</span><span>+</span>
+        <span class="stat-label">Expert Trainers</span>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <span class="stat-number" data-target="100">0</span><span>+</span>
+        <span class="stat-label">Classes/Week</span>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <span class="stat-number" data-target="10">0</span><span>+</span>
+        <span class="stat-label">Years Running</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-indicator">
+    <i class="fas fa-chevron-down"></i>
+  </div>
+</section>
+
+<!-- Features Strip -->
+<section class="features-strip">
+  <div class="container">
+    <div class="row g-0">
+      <div class="col-6 col-md-3 feature-item">
+        <i class="fas fa-clock"></i>
+        <div>
+          <strong>Open 24/7</strong>
+          <span>Anytime Access</span>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 feature-item">
+        <i class="fas fa-user-shield"></i>
+        <div>
+          <strong>Expert Trainers</strong>
+          <span>Certified Coaches</span>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 feature-item">
+        <i class="fas fa-heartbeat"></i>
+        <div>
+          <strong>Modern Equipment</strong>
+          <span>State of the Art</span>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 feature-item border-0">
+        <i class="fas fa-wifi"></i>
+        <div>
+          <strong>Free Wi-Fi</strong>
+          <span>Stay Connected</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Snippet -->
+<section class="about-snippet py-5">
+  <div class="container py-4">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="section-tag">About FitZone</div>
+        <h2 class="section-title">More Than Just a Gym</h2>
+        <p class="section-text">
+          FitZone is a premium fitness destination designed for every fitness level. Whether you're just starting out or are an advanced athlete, our facility has everything you need to achieve your goals.
+        </p>
+        <ul class="about-list">
+          <li><i class="fas fa-check-circle"></i> State-of-the-art cardio and weight training zones</li>
+          <li><i class="fas fa-check-circle"></i> Personal training and group class programs</li>
+          <li><i class="fas fa-check-circle"></i> Nutrition counseling and wellness support</li>
+          <li><i class="fas fa-check-circle"></i> Locker rooms, sauna, and recovery facilities</li>
+        </ul>
+        <a href="/about" class="btn btn-primary-custom mt-3">Discover More</a>
+      </div>
+      <div class="col-lg-6">
+        <div class="about-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=500&fit=crop&q=80" alt="FitZone Gym Interior" class="about-img" />
+          <div class="about-badge">
+            <span class="badge-number">10+</span>
+            <span class="badge-label">Years of Excellence</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Membership Plans Preview -->
+<section class="membership-preview py-5 bg-dark-section">
+  <div class="container py-4">
+    <div class="text-center mb-5">
+      <div class="section-tag">Pricing</div>
+      <h2 class="section-title text-light">Choose Your Plan</h2>
+      <p class="section-text text-muted">Flexible plans designed to fit your lifestyle and budget</p>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <!-- Basic -->
+      <div class="col-lg-4 col-md-6">
+        <div class="plan-card">
+          <div class="plan-header">
+            <div class="plan-icon"><i class="fas fa-bolt"></i></div>
+            <h3 class="plan-name">Basic</h3>
+            <div class="plan-price">
+              <span class="currency">₹</span>999<span class="period">/mo</span>
+            </div>
+          </div>
+          <ul class="plan-features">
+            <li><i class="fas fa-check"></i> Gym Access (6 AM – 8 PM)</li>
+            <li><i class="fas fa-check"></i> Basic Equipment Use</li>
+            <li><i class="fas fa-check"></i> Locker Room Access</li>
+            <li><i class="fas fa-check"></i> 1 Group Class / Week</li>
+            <li class="disabled"><i class="fas fa-times"></i> Personal Trainer</li>
+            <li class="disabled"><i class="fas fa-times"></i> Nutrition Plan</li>
+          </ul>
+          <a href="/membership" class="btn btn-plan">Join Basic</a>
+        </div>
+      </div>
+      <!-- Pro (Popular) -->
+      <div class="col-lg-4 col-md-6">
+        <div class="plan-card plan-popular">
+          <div class="popular-badge">Most Popular</div>
+          <div class="plan-header">
+            <div class="plan-icon"><i class="fas fa-fire"></i></div>
+            <h3 class="plan-name">Pro</h3>
+            <div class="plan-price">
+              <span class="currency">₹</span>1999<span class="period">/mo</span>
+            </div>
+          </div>
+          <ul class="plan-features">
+            <li><i class="fas fa-check"></i> 24/7 Gym Access</li>
+            <li><i class="fas fa-check"></i> All Equipment Access</li>
+            <li><i class="fas fa-check"></i> Locker Room + Sauna</li>
+            <li><i class="fas fa-check"></i> Unlimited Group Classes</li>
+            <li><i class="fas fa-check"></i> 2 PT Sessions / Month</li>
+            <li class="disabled"><i class="fas fa-times"></i> Custom Nutrition Plan</li>
+          </ul>
+          <a href="/membership" class="btn btn-plan-popular">Join Pro</a>
+        </div>
+      </div>
+      <!-- Premium -->
+      <div class="col-lg-4 col-md-6">
+        <div class="plan-card">
+          <div class="plan-header">
+            <div class="plan-icon"><i class="fas fa-crown"></i></div>
+            <h3 class="plan-name">Premium</h3>
+            <div class="plan-price">
+              <span class="currency">₹</span>2999<span class="period">/mo</span>
+            </div>
+          </div>
+          <ul class="plan-features">
+            <li><i class="fas fa-check"></i> 24/7 Gym Access</li>
+            <li><i class="fas fa-check"></i> All Equipment Access</li>
+            <li><i class="fas fa-check"></i> Locker Room + Sauna + Pool</li>
+            <li><i class="fas fa-check"></i> Unlimited Group Classes</li>
+            <li><i class="fas fa-check"></i> Unlimited PT Sessions</li>
+            <li><i class="fas fa-check"></i> Custom Nutrition Plan</li>
+          </ul>
+          <a href="/membership" class="btn btn-plan">Join Premium</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trainers Preview -->
+<section class="trainers-preview py-5">
+  <div class="container py-4">
+    <div class="text-center mb-5">
+      <div class="section-tag">Our Team</div>
+      <h2 class="section-title">Meet the Trainers</h2>
+      <p class="section-text">Certified professionals dedicated to your success</p>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-lg-4 col-md-6">
+        <div class="trainer-card">
+          <div class="trainer-img-wrap">
+            <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=400&h=500&fit=crop&q=80" alt="John Carter" class="trainer-img" />
+            <div class="trainer-overlay">
+              <div class="trainer-socials">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="trainer-info">
+            <h4 class="trainer-name">John Carter</h4>
+            <span class="trainer-spec">Strength Coach</span>
+            <div class="trainer-rating">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i>
+              <i class="fas fa-star"></i><i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <span>4.9</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="trainer-card">
+          <div class="trainer-img-wrap">
+            <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&h=500&fit=crop&q=80" alt="Alex Rivera" class="trainer-img" />
+            <div class="trainer-overlay">
+              <div class="trainer-socials">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="trainer-info">
+            <h4 class="trainer-name">Alex Rivera</h4>
+            <span class="trainer-spec">Cardio Trainer</span>
+            <div class="trainer-rating">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i>
+              <i class="fas fa-star"></i><i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <span>4.8</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="trainer-card">
+          <div class="trainer-img-wrap">
+            <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=400&h=500&fit=crop&q=80" alt="Sarah Mitchell" class="trainer-img" />
+            <div class="trainer-overlay">
+              <div class="trainer-socials">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="trainer-info">
+            <h4 class="trainer-name">Sarah Mitchell</h4>
+            <span class="trainer-spec">Yoga &amp; Flexibility</span>
+            <div class="trainer-rating">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i>
+              <i class="fas fa-star"></i><i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <span>5.0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-4">
+      <a href="/trainers" class="btn btn-outline-primary-custom">View All Trainers</a>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials-section py-5 bg-dark-section">
+  <div class="container py-4">
+    <div class="text-center mb-5">
+      <div class="section-tag">Testimonials</div>
+      <h2 class="section-title text-light">What Our Members Say</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <div class="testimonial-card">
+          <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+          <p>"FitZone completely changed my life. Lost 20kg in 6 months with the help of amazing trainers. Best investment I ever made!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">R</div>
+            <div>
+              <strong>Rahul Sharma</strong>
+              <span>Pro Member</span>
+            </div>
+          </div>
+          <div class="testimonial-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="testimonial-card testimonial-featured">
+          <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+          <p>"The equipment is top-notch and the trainers are incredibly supportive. Sarah's yoga classes are absolutely transformative!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">P</div>
+            <div>
+              <strong>Priya Mehta</strong>
+              <span>Premium Member</span>
+            </div>
+          </div>
+          <div class="testimonial-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="testimonial-card">
+          <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+          <p>"John's strength training program is incredible. Gained serious muscle and my energy levels are through the roof. Highly recommend!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">A</div>
+            <div>
+              <strong>Aditya Verma</strong>
+              <span>Basic Member</span>
+            </div>
+          </div>
+          <div class="testimonial-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section py-5">
+  <div class="container text-center py-4">
+    <h2 class="cta-title">Ready to Start Your Journey?</h2>
+    <p class="cta-sub">Join thousands of members who have already transformed their lives at FitZone.</p>
+    <div class="cta-buttons">
+      <a href="/auth/signup" class="btn btn-primary-custom btn-lg me-3" id="cta-signup-btn">
+        <i class="fas fa-rocket me-2"></i>Get Started Free
+      </a>
+      <a href="/contact" class="btn btn-outline-light-custom btn-lg" id="cta-contact-btn">
+        <i class="fas fa-phone me-2"></i>Contact Us
+      </a>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/layout_end') %>

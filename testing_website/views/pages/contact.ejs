@@ -1,0 +1,141 @@
+<%- include('../partials/header') %>
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="page-hero-overlay"></div>
+  <div class="container text-center page-hero-content">
+    <h1 class="page-hero-title">Contact <span class="text-gradient">Us</span></h1>
+    <p class="page-hero-sub">We'd love to hear from you — reach out anytime</p>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb justify-content-center">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active">Contact</li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container py-4">
+    <div class="row g-5 align-items-start">
+
+      <!-- Contact Info -->
+      <div class="col-lg-5">
+        <div class="section-tag">Get In Touch</div>
+        <h2 class="section-title">Let's Talk Fitness</h2>
+        <p class="section-text">
+          Have a question about membership, training, or anything else? Our team is ready to help you start your fitness journey.
+        </p>
+
+        <div class="contact-info-list">
+          <div class="contact-info-item">
+            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <strong>Address</strong>
+              <p>123 Fitness Street, Andheri West,<br />Mumbai, Maharashtra 400001</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon"><i class="fas fa-phone"></i></div>
+            <div>
+              <strong>Phone</strong>
+              <p>+91 98765 43210</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <strong>Email</strong>
+              <p>info@fitzoneGym.com</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon"><i class="fas fa-clock"></i></div>
+            <div>
+              <strong>Hours</strong>
+              <p>Mon–Sat: 5:00 AM – 10:00 PM<br />Sunday: 7:00 AM – 8:00 PM</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="social-links mt-4">
+          <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="col-lg-7">
+        <div class="contact-form-card">
+          <h3 class="form-card-title">Send Us a Message</h3>
+
+          <% if (success) { %>
+            <div class="alert-custom alert-success-custom" id="contact-success-msg">
+              <i class="fas fa-check-circle me-2"></i><%= success %>
+            </div>
+          <% } %>
+          <% if (error) { %>
+            <div class="alert-custom alert-error-custom" id="contact-error-msg">
+              <i class="fas fa-exclamation-circle me-2"></i><%= error %>
+            </div>
+          <% } %>
+
+          <form action="/contact" method="POST" id="contact-form" novalidate>
+            <div class="mb-4">
+              <label for="contact-name" class="form-label-custom">Your Name *</label>
+              <div class="input-group-custom">
+                <i class="fas fa-user"></i>
+                <input
+                  type="text"
+                  id="contact-name"
+                  name="name"
+                  class="form-input-custom"
+                  placeholder="John Doe"
+                  required
+                  maxlength="100"
+                />
+              </div>
+            </div>
+            <div class="mb-4">
+              <label for="contact-email" class="form-label-custom">Email Address *</label>
+              <div class="input-group-custom">
+                <i class="fas fa-envelope"></i>
+                <input
+                  type="email"
+                  id="contact-email"
+                  name="email"
+                  class="form-input-custom"
+                  placeholder="you@example.com"
+                  required
+                  maxlength="200"
+                />
+              </div>
+            </div>
+            <div class="mb-4">
+              <label for="contact-message" class="form-label-custom">Message *</label>
+              <div class="input-group-custom textarea-group">
+                <i class="fas fa-comment-alt"></i>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  class="form-input-custom form-textarea-custom"
+                  placeholder="Tell us how we can help you..."
+                  rows="5"
+                  required
+                  maxlength="1000"
+                ></textarea>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary-custom w-100 py-3" id="contact-submit-btn">
+              <i class="fas fa-paper-plane me-2"></i>Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/layout_end') %>

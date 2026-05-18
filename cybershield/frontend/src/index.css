@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg-primary text-white font-sans antialiased;
+    min-height: 100vh;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-bg-surface;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-bg-border rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-cyber-muted;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-bg-surface border border-bg-border rounded-xl backdrop-blur-sm;
+  }
+
+  .btn-primary {
+    @apply bg-accent hover:bg-indigo-500 text-white font-medium px-4 py-2 rounded-lg
+           transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-danger {
+    @apply bg-danger hover:bg-red-500 text-white font-medium px-4 py-2 rounded-lg
+           transition-all duration-200 active:scale-95;
+  }
+
+  .btn-ghost {
+    @apply hover:bg-bg-border text-cyber-muted hover:text-white font-medium px-4 py-2
+           rounded-lg transition-all duration-200;
+  }
+
+  .risk-pill {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold;
+  }
+
+  .risk-critical {
+    @apply risk-pill bg-red-500/20 text-red-400 border border-red-500/30;
+  }
+  .risk-high {
+    @apply risk-pill bg-orange-500/20 text-orange-400 border border-orange-500/30;
+  }
+  .risk-medium {
+    @apply risk-pill bg-yellow-500/20 text-yellow-400 border border-yellow-500/30;
+  }
+  .risk-low {
+    @apply risk-pill bg-green-500/20 text-green-400 border border-green-500/30;
+  }
+
+  .attack-badge {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium;
+  }
+
+  .nav-link {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium
+           text-cyber-muted hover:text-white hover:bg-indigo-500/10
+           transition-all duration-200 cursor-pointer;
+  }
+
+  .nav-link-active {
+    @apply nav-link text-white bg-indigo-500/20 border border-indigo-500/20;
+  }
+
+  .input-field {
+    @apply w-full bg-bg-primary border border-bg-border rounded-lg px-3 py-2 text-sm
+           text-white placeholder-cyber-muted
+           focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30
+           transition-all duration-200;
+  }
+
+  .section-header {
+    @apply text-lg font-semibold text-white mb-4;
+  }
+
+  .table-row-base {
+    @apply border-b border-bg-border hover:bg-bg-border/30 transition-colors duration-150 cursor-pointer;
+  }
+
+  .skeleton {
+    @apply animate-pulse bg-bg-border rounded;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent;
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  }
+
+  .glow-danger {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+  }
+}
+
+/* Live pulse animation */
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+.live-dot {
+  animation: live-pulse 2s ease-in-out infinite;
+}
+
+/* Flash new row */
+@keyframes row-flash {
+  0% { background-color: rgba(239, 68, 68, 0.2); }
+  100% { background-color: transparent; }
+}
+
+.row-new {
+  animation: row-flash 2s ease-out forwards;
+}
+
+/* Drawer slide-in */
+@keyframes drawer-slide-in {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.drawer-enter {
+  animation: drawer-slide-in 0.25s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}

@@ -1,0 +1,16 @@
+flask==3.0.0
+flask-socketio==5.3.6
+flask-sqlalchemy==3.1.1
+flask-jwt-extended==4.6.0
+redis==5.0.1
+scikit-learn==1.4.0
+numpy==1.26.4
+pandas==2.1.4
+marshmallow==3.20.2
+python-dotenv==1.0.0
+eventlet==0.35.1
+requests==2.31.0
+gunicorn==21.2.0
+pytest==7.4.4
+pytest-mock==3.12.0
+bcrypt==4.1.2

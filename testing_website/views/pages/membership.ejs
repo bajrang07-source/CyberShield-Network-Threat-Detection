@@ -1,0 +1,146 @@
+<%- include('../partials/header') %>
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="page-hero-overlay"></div>
+  <div class="container text-center page-hero-content">
+    <h1 class="page-hero-title">Membership <span class="text-gradient">Plans</span></h1>
+    <p class="page-hero-sub">Simple, transparent pricing for every fitness goal</p>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb justify-content-center">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active">Membership</li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<!-- Plans -->
+<section class="py-5">
+  <div class="container py-4">
+    <div class="text-center mb-5">
+      <div class="section-tag">Pricing</div>
+      <h2 class="section-title">Find Your Perfect Plan</h2>
+      <p class="section-text">No hidden fees. No lock-in contracts. Cancel anytime.</p>
+    </div>
+
+    <div class="row g-4 justify-content-center align-items-stretch">
+      <!-- Basic -->
+      <div class="col-lg-4 col-md-6 d-flex">
+        <div class="plan-card w-100">
+          <div class="plan-header">
+            <div class="plan-icon"><i class="fas fa-bolt"></i></div>
+            <h3 class="plan-name">Basic</h3>
+            <div class="plan-price">
+              <span class="currency">₹</span>999<span class="period">/month</span>
+            </div>
+            <p class="plan-tagline">Perfect for beginners</p>
+          </div>
+          <ul class="plan-features">
+            <li><i class="fas fa-check"></i> Gym Access (6 AM – 8 PM)</li>
+            <li><i class="fas fa-check"></i> Basic Cardio Equipment</li>
+            <li><i class="fas fa-check"></i> Free Weights Area</li>
+            <li><i class="fas fa-check"></i> Locker Room Access</li>
+            <li><i class="fas fa-check"></i> 1 Group Class / Week</li>
+            <li><i class="fas fa-check"></i> Fitness Assessment</li>
+            <li class="disabled"><i class="fas fa-times"></i> Personal Trainer Sessions</li>
+            <li class="disabled"><i class="fas fa-times"></i> Sauna & Steam Room</li>
+            <li class="disabled"><i class="fas fa-times"></i> Nutrition Counseling</li>
+            <li class="disabled"><i class="fas fa-times"></i> Swimming Pool</li>
+          </ul>
+          <a href="/auth/signup" class="btn btn-plan w-100" id="join-basic-btn">Join Basic</a>
+        </div>
+      </div>
+
+      <!-- Pro -->
+      <div class="col-lg-4 col-md-6 d-flex">
+        <div class="plan-card plan-popular w-100">
+          <div class="popular-badge">⭐ Most Popular</div>
+          <div class="plan-header">
+            <div class="plan-icon"><i class="fas fa-fire"></i></div>
+            <h3 class="plan-name">Pro</h3>
+            <div class="plan-price">
+              <span class="currency">₹</span>1999<span class="period">/month</span>
+            </div>
+            <p class="plan-tagline">Great for dedicated athletes</p>
+          </div>
+          <ul class="plan-features">
+            <li><i class="fas fa-check"></i> 24/7 Gym Access</li>
+            <li><i class="fas fa-check"></i> All Equipment Access</li>
+            <li><i class="fas fa-check"></i> Full Weight Room</li>
+            <li><i class="fas fa-check"></i> Locker Room + Sauna</li>
+            <li><i class="fas fa-check"></i> Unlimited Group Classes</li>
+            <li><i class="fas fa-check"></i> 2 PT Sessions / Month</li>
+            <li><i class="fas fa-check"></i> Fitness Progress Tracking</li>
+            <li><i class="fas fa-check"></i> Guest Pass (2/month)</li>
+            <li class="disabled"><i class="fas fa-times"></i> Custom Nutrition Plan</li>
+            <li class="disabled"><i class="fas fa-times"></i> Swimming Pool</li>
+          </ul>
+          <a href="/auth/signup" class="btn btn-plan-popular w-100" id="join-pro-btn">Join Pro</a>
+        </div>
+      </div>
+
+      <!-- Premium -->
+      <div class="col-lg-4 col-md-6 d-flex">
+        <div class="plan-card w-100">
+          <div class="plan-header">
+            <div class="plan-icon"><i class="fas fa-crown"></i></div>
+            <h3 class="plan-name">Premium</h3>
+            <div class="plan-price">
+              <span class="currency">₹</span>2999<span class="period">/month</span>
+            </div>
+            <p class="plan-tagline">The ultimate experience</p>
+          </div>
+          <ul class="plan-features">
+            <li><i class="fas fa-check"></i> 24/7 VIP Gym Access</li>
+            <li><i class="fas fa-check"></i> All Equipment Access</li>
+            <li><i class="fas fa-check"></i> Private Training Area</li>
+            <li><i class="fas fa-check"></i> Locker Room + Sauna + Steam</li>
+            <li><i class="fas fa-check"></i> Unlimited Group Classes</li>
+            <li><i class="fas fa-check"></i> Unlimited PT Sessions</li>
+            <li><i class="fas fa-check"></i> Custom Nutrition Plan</li>
+            <li><i class="fas fa-check"></i> Swimming Pool Access</li>
+            <li><i class="fas fa-check"></i> Monthly Body Composition</li>
+            <li><i class="fas fa-check"></i> Unlimited Guest Passes</li>
+          </ul>
+          <a href="/auth/signup" class="btn btn-plan w-100" id="join-premium-btn">Join Premium</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ / Note -->
+    <div class="membership-note mt-5">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="note-item">
+            <i class="fas fa-shield-alt"></i>
+            <div>
+              <strong>No Hidden Fees</strong>
+              <p>What you see is what you pay. Complete transparency.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="note-item">
+            <i class="fas fa-sync-alt"></i>
+            <div>
+              <strong>Cancel Anytime</strong>
+              <p>No long-term contracts. Pause or cancel whenever you want.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="note-item">
+            <i class="fas fa-headset"></i>
+            <div>
+              <strong>24/7 Support</strong>
+              <p>Our team is always here to help you succeed.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/layout_end') %>

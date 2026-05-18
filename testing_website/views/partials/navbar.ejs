@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNavbar">
+  <div class="container">
+    <!-- Brand -->
+    <a class="navbar-brand" href="/">
+      <span class="brand-icon"><i class="fas fa-dumbbell"></i></span>
+      <span class="brand-text">Fit<span class="brand-accent">Zone</span></span>
+    </a>
+
+    <!-- Toggler -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/membership">Membership</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/trainers">Trainers</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li>
+
+        <% if (user) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/dashboard">
+              <i class="fas fa-tachometer-alt me-1"></i>Dashboard
+            </a>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <a class="btn btn-outline-danger btn-sm px-3" href="/auth/logout">
+              <i class="fas fa-sign-out-alt me-1"></i>Logout
+            </a>
+          </li>
+        <% } else { %>
+          <li class="nav-item ms-lg-2">
+            <a class="nav-link" href="/auth/login">Login</a>
+          </li>
+          <li class="nav-item ms-lg-1">
+            <a class="btn btn-primary-custom btn-sm px-4" href="/auth/signup">
+              Join Now
+            </a>
+          </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,106 @@
+<%- include('../partials/header') %>
+
+<section class="auth-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-5 col-md-7">
+        <div class="auth-card">
+          <!-- Logo -->
+          <div class="auth-logo">
+            <a href="/">
+              <i class="fas fa-dumbbell"></i>
+              <span>Fit<span class="brand-accent">Zone</span></span>
+            </a>
+          </div>
+          <h2 class="auth-title">Create Your Account</h2>
+          <p class="auth-subtitle">Join thousands of members on their fitness journey</p>
+
+          <% if (error) { %>
+            <div class="alert-custom alert-error-custom" id="signup-error-msg">
+              <i class="fas fa-exclamation-circle me-2"></i><%= error %>
+            </div>
+          <% } %>
+
+          <form action="/auth/signup" method="POST" id="signup-form" novalidate>
+            <div class="mb-4">
+              <label for="signup-name" class="form-label-custom">Full Name</label>
+              <div class="input-group-custom">
+                <i class="fas fa-user"></i>
+                <input
+                  type="text"
+                  id="signup-name"
+                  name="name"
+                  class="form-input-custom"
+                  placeholder="John Doe"
+                  required
+                  minlength="2"
+                  maxlength="100"
+                  autocomplete="name"
+                />
+              </div>
+            </div>
+            <div class="mb-4">
+              <label for="signup-email" class="form-label-custom">Email Address</label>
+              <div class="input-group-custom">
+                <i class="fas fa-envelope"></i>
+                <input
+                  type="email"
+                  id="signup-email"
+                  name="email"
+                  class="form-input-custom"
+                  placeholder="you@example.com"
+                  required
+                  maxlength="200"
+                  autocomplete="email"
+                />
+              </div>
+            </div>
+            <div class="mb-4">
+              <label for="signup-password" class="form-label-custom">Password</label>
+              <div class="input-group-custom">
+                <i class="fas fa-lock"></i>
+                <input
+                  type="password"
+                  id="signup-password"
+                  name="password"
+                  class="form-input-custom"
+                  placeholder="Min. 6 characters"
+                  required
+                  minlength="6"
+                  autocomplete="new-password"
+                />
+                <button type="button" class="toggle-password" id="signup-toggle" aria-label="Toggle password">
+                  <i class="fas fa-eye" id="signup-toggle-eye"></i>
+                </button>
+              </div>
+              <!-- Password Strength Bar -->
+              <div class="strength-bar mt-2" id="strength-bar">
+                <div class="strength-fill" id="strength-fill"></div>
+              </div>
+              <small class="strength-label" id="strength-label"></small>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label-custom">Default Membership</label>
+              <div class="membership-select-display">
+                <i class="fas fa-bolt"></i>
+                <span>Basic Plan — ₹999/month</span>
+                <small>(upgradeable after registration)</small>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary-custom w-100 py-3 mb-3" id="signup-submit-btn">
+              <i class="fas fa-user-plus me-2"></i>Create Account
+            </button>
+          </form>
+
+          <p class="auth-switch mt-3">
+            Already have an account? <a href="/auth/login">Sign In</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/layout_end') %>
