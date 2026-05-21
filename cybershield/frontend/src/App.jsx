@@ -9,6 +9,9 @@ import BlockedIPs from './pages/BlockedIPs'
 import SettingsPage from './pages/Settings'
 import Sites from './pages/Sites'
 import Onboarding from './pages/Onboarding'
+import IncidentCenter from './pages/IncidentCenter'
+import PlaybookViewer from './pages/PlaybookViewer'
+import SOCCommandCenter from './pages/SOCCommandCenter'
 import useAppStore from './store/useAppStore'
 import api from './lib/api'
 // Initialize socket on app load
@@ -131,6 +134,36 @@ export default function App() {
             <PrivateRoute>
               <OnboardingGate>
                 <AppLayout><SettingsPage /></AppLayout>
+              </OnboardingGate>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/incidents"
+          element={
+            <PrivateRoute>
+              <OnboardingGate>
+                <AppLayout><IncidentCenter /></AppLayout>
+              </OnboardingGate>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/incidents/:id/playbook"
+          element={
+            <PrivateRoute>
+              <OnboardingGate>
+                <AppLayout><PlaybookViewer /></AppLayout>
+              </OnboardingGate>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/soc"
+          element={
+            <PrivateRoute>
+              <OnboardingGate>
+                <AppLayout><SOCCommandCenter /></AppLayout>
               </OnboardingGate>
             </PrivateRoute>
           }

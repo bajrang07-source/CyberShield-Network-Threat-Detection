@@ -29,7 +29,7 @@ export default function LiveTrafficChart({ data }) {
   }
 
   return (
-    <div className="glass-card p-6">
+    <div className="glass-card p-6" style={{ height: '300px' }}>
       <div className="flex items-center justify-between mb-4">
         <div>
           <h3 className="text-base font-semibold text-white">Live Traffic</h3>

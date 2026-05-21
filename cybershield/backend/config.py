@@ -34,6 +34,13 @@ class Config:
     # Webhook
     WEBHOOK_URL: str = os.getenv("WEBHOOK_URL", "")
 
+    # Phase 4 — IR Agent
+    # Set AUTO_CONTAINMENT_ENABLED=true in .env to allow the IR agent to
+    # automatically flag IPs for containment on CRITICAL incidents.
+    AUTO_CONTAINMENT_ENABLED: bool = (
+        os.getenv("AUTO_CONTAINMENT_ENABLED", "false").lower() == "true"
+    )
+
     # JWT config for Flask-JWT-Extended
     JWT_SECRET_KEY: str = os.getenv("JWT_SECRET", "cybershield-jwt-secret-change-in-prod")
     JWT_ACCESS_TOKEN_EXPIRES: int = int(os.getenv("JWT_ACCESS_TOKEN_EXPIRES", "3600"))

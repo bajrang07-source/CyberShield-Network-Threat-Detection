@@ -127,11 +127,15 @@ def health():
 # ── Blueprint registration ─────────────────────────────────────────────────────
 from api.dashboard import dashboard_bp
 from api.ingest import ingest_bp
+from api.ingest_routes import log_ingest_bp      # Phase 1 — universal log ingestion
+from api.incident_routes import incident_bp       # Phase 3 — incident management
 from api.sites import sites_bp
 from middleware.proxy import proxy_bp
 
 app.register_blueprint(dashboard_bp)
 app.register_blueprint(ingest_bp)
+app.register_blueprint(log_ingest_bp)             # Phase 1
+app.register_blueprint(incident_bp, url_prefix="/api")
 app.register_blueprint(sites_bp)
 app.register_blueprint(proxy_bp)
 

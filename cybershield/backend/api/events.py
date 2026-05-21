@@ -177,3 +177,25 @@ def emit_stats_delta(stats_dict: dict, site_id: Optional[str] = None) -> None:
 def emit_connection_count(count: int) -> None:
     socketio = _get_socketio()
     socketio.emit("connection_count", {"count": count}, namespace="/")
+
+
+# ─── Phase 5: Incident Management ─────────────────────────────────────────────
+
+def emit_incident_update(incident: dict, site_id: Optional[str] = None) -> None:
+    """Emitted when an incident is created or updated."""
+    socketio = _get_socketio()
+    _emit(socketio, "incident_update", incident, site_id)
+
+
+def emit_playbook_stream(incident_id: str, chunk: str, site_id: Optional[str] = None) -> None:
+    """Emitted for streaming playbook generation."""
+    socketio = _get_socketio()
+    payload = {"incident_id": incident_id, "chunk": chunk}
+    _emit(socketio, "playbook_stream", payload, site_id)
+
+
+def emit_containment_action(ip: str, reason: str, timestamp: str, site_id: Optional[str] = None) -> None:
+    """Emitted when auto-containment takes action."""
+    socketio = _get_socketio()
+    payload = {"ip": ip, "reason": reason, "timestamp": timestamp, "site_id": site_id}
+    _emit(socketio, "containment_action", payload, site_id)

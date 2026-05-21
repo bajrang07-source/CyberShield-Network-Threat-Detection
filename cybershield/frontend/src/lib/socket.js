@@ -1,5 +1,6 @@
 import { io } from 'socket.io-client'
 import useAppStore from '../store/useAppStore'
+import useIncidentStore from '../store/useIncidentStore'
 
 const socket = io('/', {
   transports: ['websocket', 'polling'],
@@ -97,6 +98,29 @@ export function leaveSiteRoom() {
     _currentRoom = null
   }
 }
+
+// ── NEW PHASE 6 EVENTS (Incidents & SOC) ──────────────────────────────────────
+socket.on('incident_update', (data) => {
+  useIncidentStore.getState().updateIncident(data)
+})
+
+socket.on('playbook_ready', (data) => {
+  const { incident_id, playbook } = data
+  if (incident_id) {
+    useIncidentStore.getState().updateIncident({ id: incident_id, playbook_ready: true, playbook })
+  }
+})
+
+socket.on('playbook_stream', (data) => {
+  const { incident_id, chunk } = data
+  if (incident_id && chunk) {
+    useIncidentStore.getState().appendPlaybookChunk(incident_id, chunk)
+  }
+})
+
+socket.on('containment_action', (data) => {
+  console.log('[Socket] Containment Action triggered:', data)
+})
 
 export { socket }
 export default socket

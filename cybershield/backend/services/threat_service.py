@@ -211,6 +211,69 @@ def analyze_request(
         behavioral_signals=behavioral_signals,
     )
 
+    # ── Phase 2: Fidelity enrichment (additive — existing result unchanged) ───
+    # Builds a lightweight proxy so new engines (PyOD, UEBA, timeseries) can
+    # score this request.  All calls are individually guarded; any failure is silent.
+    try:
+        from detection.pyod_engine import pyod_engine
+        from detection.ueba_engine import ueba_engine
+        from detection.timeseries_engine import ts_engine
+        from detection.fidelity_ranker import fidelity_ranker
+
+        class _EventProxy:
+            source_ip = ip
+            user_id   = None
+            action    = result.action
+            timestamp = timestamp
+            raw_data  = snippet or ""
+            payload   = {
+                "path":            path,
+                "user_agent":      user_agent,
+                "request_rate_1m": rate_1m,
+                "url":             path,
+            }
+
+        _proxy = _EventProxy()
+
+        try:
+            ts_engine.record(_proxy)
+        except Exception:
+            pass
+        try:
+            ueba_engine.update_baseline(_proxy)
+        except Exception:
+            pass
+
+        _pyod_score = 0.5
+        _ueba_score = 0.3
+        _ts_score   = 0.0
+        try:
+            _pyod_score = pyod_engine.score(_proxy)
+        except Exception:
+            pass
+        try:
+            _ueba_score = ueba_engine.score(_proxy)
+        except Exception:
+            pass
+        try:
+            _ts_score = ts_engine.score(ip)
+        except Exception:
+            pass
+
+        _rule_norm = rule_result.severity / 10.0
+        fidelity = fidelity_ranker.rank({
+            "rule":             _rule_norm,
+            "ml_random_forest": ml_score,
+            "pyod":             _pyod_score,
+            "ueba":             _ueba_score,
+            "timeseries":       _ts_score,
+        })
+        result.fidelity = fidelity.to_dict()
+
+    except Exception as exc:
+        logger.debug("[ThreatService] Fidelity enrichment skipped: %s", exc)
+        result.fidelity = None
+
     # ── Steps 8-10: Persist + emit + webhook ──────────────────────────────────
     try:
         _persist_and_emit(result, redis_client, thresholds, response_ms=response_ms)
@@ -218,6 +281,7 @@ def analyze_request(
         logger.error("[ThreatService] Persist/emit error: %s", exc)
 
     return result
+
 
 
 # ─── Persist + emit ───────────────────────────────────────────────────────────
@@ -412,10 +476,32 @@ def _emit_stats_delta(result: ThreatResult, critical_threshold: float):
             (BlockedIP.expires_at > datetime.utcnow()) | (BlockedIP.is_permanent == True)
         ).count()
 
+        # Phase 5: Add incident stats
+        open_incidents = 0
+        critical_count = 0
+        try:
+            from storage.es_client import es_client, INDEX_INCIDENTS
+            if es_client.is_connected:
+                # Basic counts via search size=1000 and manual count for speed in this context
+                res = es_client._es.search(index=INDEX_INCIDENTS, body={
+                    "query": {"term": {"status": "OPEN"}}, "size": 0, "track_total_hits": True
+                })
+                open_incidents = res.get("hits", {}).get("total", {}).get("value", 0)
+
+                res_c = es_client._es.search(index=INDEX_INCIDENTS, body={
+                    "query": {"bool": {"must": [{"term": {"status": "OPEN"}}, {"term": {"severity": "CRITICAL"}}]}},
+                    "size": 0, "track_total_hits": True
+                })
+                critical_count = res_c.get("hits", {}).get("total", {}).get("value", 0)
+        except Exception as es_exc:
+            logger.warning("[ThreatService] Failed to fetch ES incident stats: %s", es_exc)
+
         emit_stats_delta({
             "total_requests":   total,
             "attacks_detected": attacks,
             "blocked_ips":      blocked,
+            "open_incidents":   open_incidents,
+            "critical_count":   critical_count,
             "timestamp":        datetime.utcnow().isoformat(),
         }, result.site_id)
     except Exception as exc:

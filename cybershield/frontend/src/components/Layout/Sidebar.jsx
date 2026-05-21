@@ -1,12 +1,14 @@
 import { NavLink } from 'react-router-dom'
 import {
-  Shield, LayoutDashboard, AlertTriangle, Ban, Settings, Wifi, WifiOff, Globe
+  Shield, LayoutDashboard, AlertTriangle, Ban, Settings, Wifi, WifiOff, Globe, Activity, ShieldAlert
 } from 'lucide-react'
 import useAppStore from '../../store/useAppStore'
 import clsx from 'clsx'
 
 const NAV_ITEMS = [
   { to: '/', icon: LayoutDashboard, label: 'Dashboard', exact: true },
+  { to: '/soc', icon: Activity, label: 'SOC Command' },
+  { to: '/incidents', icon: ShieldAlert, label: 'Incidents' },
   { to: '/attacks', icon: AlertTriangle, label: 'Attacks' },
   { to: '/blocked-ips', icon: Ban, label: 'Blocked IPs' },
   { to: '/sites', icon: Globe, label: 'Sites' },
